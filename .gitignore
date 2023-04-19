@@ -1,0 +1,11 @@
+# Eclipse project files
+.classpath
+.project
+.settings/
+
+# Compiled Java classes
+bin/
+
+# Other generated files
+*.log
+*.swp
