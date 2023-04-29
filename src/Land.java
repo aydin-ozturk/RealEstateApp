@@ -13,7 +13,7 @@ public class Land extends Property {
         return size;
     }
     
-    public void setSize(double size) {
+    protected void setSize(double size) {
         this.size = size;
     }
     
@@ -21,7 +21,25 @@ public class Land extends Property {
         return type;
     }
     
-    public void setType(String type) {
+    protected void setType(String type) {
         this.type = type;
     }
-}
+
+    @Override
+	public void sell(Customer customer) {
+    	System.out.println(this.getClass().getSimpleName() + " on "+ this.getAddress() + " is sold to " + customer.getName());
+	}
+    
+    private static class LandUtils {
+        private static String listingType(boolean isForRent) {
+            return (isForRent ? "For rent" : "For sale");
+        }
+    }
+    @Override
+    public void getInfo() {
+        System.out.println("Property type: " + this.getClass().getSimpleName());
+        System.out.println("Listing type: " + LandUtils.listingType(this.isForRent()));
+        System.out.println("Land type: " + this.getType());
+        System.out.println("Price: $" + this.getPrice() + (this.isForRent() ? "/month" : ""));
+    }
+    }

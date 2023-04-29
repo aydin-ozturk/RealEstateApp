@@ -34,4 +34,32 @@ public class Customer extends Person {
     public void setRenting(boolean isRenting) {
         this.isRenting = isRenting;
     }
+
+	@Override
+	public void call(Person person) {
+		if (this.getName() != person.getName()) {
+			System.out.println(this.getName() + " is calling " + person.getName() + " at " + person.getPhoneNo()+" ...");
+		}
+		else {
+			System.out.println("Invalid operation, cannot call self");
+		}
+		
+	}
+	
+	@Override
+	public void getInfo() {
+    	System.out.println("Name: " + this.getName());
+		System.out.println("Email: " + this.getEmail());
+		System.out.println("Phone number: " + this.getPhoneNo());
+		System.out.println("Interested in: " + (this.isRenting ? "Renting" : "Buying"));
+		System.out.println("Budget: " + this.getBudget());
+	}
+	
+	@Override
+	public void email(Person person, String message) {
+		System.out.println("Name of the receipent: " + person.getName());
+		System.out.println("Email Address: " + person.getEmail());
+		System.out.println("Email Body: " + message);
+		
+	}
 }

@@ -2,8 +2,10 @@
 public class Main {
     public static void main(String[] args) {
         
-        House house1 = new House("789 Oak St., Chicago", 400000, 3, 2, true, false);
-        House house2 = new House("321 Pine St., San Francisco", 6000, 4, 2, false, true);
+    	final RealEstate realEstate = new RealEstate();
+    	
+        House house1 = new House("789 Oak St., Chicago", 400000, 3, 2, true, false, true);
+        House house2 = new House("321 Pine St., San Francisco", 6000, 4, 2, false, true, false);
         
         Land land1 = new Land("111 Main St., Boston", 200000, 20, "Commercial", true, false);
         Land land2 = new Land("222 Elm St., Seattle", 1000, 10, "Agricultural", false, true);
@@ -24,40 +26,26 @@ public class Main {
         agent2.addProperty(land2);
         agent2.addProperty(apartment2);
         
-        System.out.println(customer1.getName() + " is looking for properties " + (customer1.isBuying() ? "for sale" : "") + (customer1.isRenting() ? "for rent" : "") + " with a budget of $" + customer1.getBudget());
-        System.out.println();
-        System.out.println("Available properties:");
-
-        for (Agent agent : new Agent[] { agent1, agent2 }) {
-            for (Property property : agent.getProperties()) {
-                if (property.isForSale() && customer1.isBuying() && customer1.getBudget() >= property.getPrice()) {
-                    if (property instanceof House) {
-                        House house = (House) property;
-                        System.out.print(property.getClass().getSimpleName() + " - " + house.getNumBedrooms() + " bed / " + house.getNumBathrooms() + " bath - " + "Price: $" + property.getPrice() + " - Adress: " + property.getAddress() +  " - Agent: " + agent.getName());
-                    } else if (property instanceof Apartment) {
-                        Apartment apartment = (Apartment) property;
-                        System.out.print(property.getClass().getSimpleName() + " - " + apartment.getNumBedrooms() + " bed / " + apartment.getNumBathrooms() + " bath - " + "Price: $" + property.getPrice() + " - Adress: " + property.getAddress() +  " - Agent: " + agent.getName());
-                    } else if (property instanceof Land) {
-                        Land land = (Land) property;
-                        System.out.print(property.getClass().getSimpleName() + " - Type: " + land.getType() + " - " + "Size: " + land.getSize() + " Acres - " +  "Price: $" + property.getPrice() + " - Adress: " + property.getAddress() +  " - Agent: " + agent.getName());
-                    }
-                    System.out.println();
-                } else if (property.isForRent() && customer1.isRenting() && customer1.getBudget() >= property.getPrice()) {
-                    if (property instanceof House) {
-                        House house = (House) property;
-                        System.out.print(property.getClass().getSimpleName() + " - " + house.getNumBedrooms() + " bed / " + house.getNumBathrooms() + " bath - " + "Price: $" + property.getPrice() + "/month" + " - Adress: " + property.getAddress() +  " - Agent: " + agent.getName());
-                    } else if (property instanceof Apartment) {
-                        Apartment apartment = (Apartment) property;
-                        System.out.print(property.getClass().getSimpleName() + " - " + apartment.getNumBedrooms() + " bed / " + apartment.getNumBathrooms() + " bath - " + "Price: $" + property.getPrice() + "/month"  + " - Adress: " + property.getAddress() +  " - Agent: " + agent.getName());
-                    } else if (property instanceof Land) {
-                        Land land = (Land) property;
-                        System.out.print(property.getClass().getSimpleName() + " - Type: " + land.getType() + " - " + "Size: " + land.getSize() + " Acres - " +  "Price: $" + property.getPrice() + "/month"  + " - Adress: " + property.getAddress() +  " - Agent: " + agent.getName());
-                    }
-                    System.out.println();
-                }
-            }
-        }
-    
+//        // list matching properties based on the customer's preferences:
+//        realEstate.findMatchingProperties(customer1); 
+        
+//        // toString() override:
+//        System.out.println(Agent.getAgentList());       
+        
+//        // equals() override:
+//        System.out.println(house1.equals(house2)); 
+        
+//        // hashCode() override:
+        System.out.println(house1.hashCode());
+        System.out.println(house2.hashCode());
+        
+        
+//        //interface implementation:      
+//        house1.sell(customer1); 
+//        customer1.call(agent1);
+//        customer1.email(agent1, "Hi, please give me an update on the property on Pine St.");
+//        land1.getInfo();
+//		  realEstate.getInfo();
     }
     
 }
