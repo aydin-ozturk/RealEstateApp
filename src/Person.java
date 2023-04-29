@@ -1,5 +1,5 @@
 
-public class Person {
+public abstract class Person implements Contactable, Presentable{
     private String name;
     private String email;
     private String phone;
@@ -26,11 +26,11 @@ public class Person {
         this.email = email;
     }
     
-    public String getPhone() {
+    public String getPhoneNo() {
         return phone;
     }
     
-    public void setPhone(String phone) {
+    public void setPhoneNo(String phone) {
         this.phone = phone;
     }
 }

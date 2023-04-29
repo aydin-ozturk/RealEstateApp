@@ -1,5 +1,5 @@
 
-public class Property {
+public abstract class Property implements Sellable, Presentable{
     private String address;
     private double price;
     private boolean isForSale;
