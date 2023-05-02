@@ -1,14 +1,43 @@
+import customExceptions.CustomerNotFoundException;
+import customExceptions.InvalidNameException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Customer extends Person {
     private double budget;
     private boolean isBuying;
     private boolean isRenting;
+    private static int nextId = 1500;
+    private int id;
+    private static List<Customer> customers = new ArrayList<>();
     
-    public Customer(String name, String email, String phone, double budget, boolean isBuying, boolean isRenting) {
+    public Customer(String name, String email, String phone, double budget, boolean isBuying, boolean isRenting) throws InvalidNameException {
         super(name, email, phone);
+        if (name.length() < 1) {
+            throw new InvalidNameException("Name cannot be blank");
+        }
         this.budget = budget;
         this.isBuying = isBuying;
         this.isRenting = isRenting;
+        this.id = nextId++;
+        customers.add(this);
+    }  
+    
+    public int getId() {
+        return id;
+    }
+    
+    public static List<Customer> getAllCustomers() {
+        return customers;
+    }
+    
+    public static String getCustomerById(int customerId) throws CustomerNotFoundException {
+        for (Customer customer : customers) {
+            if (customer.getId() == customerId) {
+                return customer.getName();
+            }
+        }
+        throw new CustomerNotFoundException("Customer with ID " + customerId + " not found.");
     }
     
     public double getBudget() {
@@ -61,5 +90,5 @@ public class Customer extends Person {
 		System.out.println("Email Address: " + person.getEmail());
 		System.out.println("Email Body: " + message);
 		
-	}
+    }
 }

@@ -1,10 +1,15 @@
+import customExceptions.InvalidPropertyTypeException;
 
 public class Land extends Property {
     private double size;
     private String type; // Can be set to commercial, agricultural or residential
     
-    public Land(String address, double price, double size, String type, boolean isForSale, boolean isForRent) {
+    public Land(String address, double price, double size, String type, boolean isForSale, boolean isForRent) throws InvalidPropertyTypeException{
         super(address, price, isForSale, isForRent);
+        if (!type.equals("Commercial") && !type.equals("Agricultural") && !type.equals("Residential")) {
+            throw new InvalidPropertyTypeException("Invalid property type: " + type + ". Property type should be either Commercial, Agricultural or Residential");
+        }
+        
         this.size = size;
         this.type = type;
     }

@@ -1,10 +1,16 @@
+import customExceptions.NegativeNumberException;
+import org.apache.logging.log4j.*;
 
 public class Apartment extends Property {
     private int numBedrooms;
     private int numBathrooms;
+    private static Logger logger = LogManager.getLogger(Main.class.getName());
      
-    public Apartment(String address, double price, int numBedrooms, int numBathrooms, boolean isForSale, boolean isForRent) {
-        super(address, price, isForSale, isForRent);
+    public Apartment(String address, double price, int numBedrooms, int numBathrooms, boolean isForSale, boolean isForRent) throws NegativeNumberException {
+    	super(address, price, isForSale, isForRent);
+    	if (numBathrooms < 0 || numBedrooms < 0) {
+        	throw new NegativeNumberException("Number of rooms cannot be negative.");
+        }        
         this.numBedrooms = numBedrooms;
         this.numBathrooms = numBathrooms;
     }
@@ -21,9 +27,14 @@ public class Apartment extends Property {
         return numBathrooms;
     }
     
-    protected void setNumBathrooms(int numBathrooms) {
-        this.numBathrooms = numBathrooms;
+    protected void setNumBathrooms(int numBathrooms) throws NegativeNumberException {
+    	if (numBathrooms < 0) {
+    	logger.error("Number of bathrooms cannot be negative.", new NegativeNumberException());
+        throw new NegativeNumberException("Number of bathrooms cannot be negative.");
     }
+    this.numBathrooms = numBathrooms;
+    }
+
 
     @Override
     public void sell(Customer customer) {
